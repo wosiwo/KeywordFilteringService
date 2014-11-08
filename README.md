@@ -27,6 +27,7 @@ KeywordFilteringService
 git clone git@github.com:wosiwo/KeywordFilteringService.git
 ```
 * step 3 create binary dict 
+
     this step will read original dict from /server/dict_all.txt ,then convert Plaintext into ASCII code and use it to  build array with a struct which is conducive to search 
 ```bash
 cd KeywordFilteringService/server
