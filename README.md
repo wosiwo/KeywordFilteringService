@@ -37,6 +37,7 @@ php createBinaryDict.php
 php filter_server.php
 ```
 * step 5 now you can use it by vist http://localhost:8888/abc.php?word=wosiwo
+    
     >if the page show a [["wosiwo","0.8"]] , it shows that the service is running successfully.
 
 
