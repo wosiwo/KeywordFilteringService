@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/admin/static/js/forms.js"></script>
+<script language="javascript">
+function $(id)
+{
+	return document.getElementById(id);
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+<div class="t">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr class="tr2">
+	  <td width="68%" height="32" align="left"><strong>附件管理</strong></td>
+    </tr>
+</table>
+</div>
+<div class="t">
+<form action="" method="POST" enctype="multipart/form-data" name="mainform" target="op" id="mainform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr class="tr2">
+		<td align="center">ID</td>
+		<td align="center">标题</td>
+		<td align="center">文件</td>
+		<td align="center">添加时间</td>
+		<td align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3">
+		<td><label>
+		  <input name="ids[]" type="checkbox" id="ids[]" value="{{$list[ol].id}}" />
+		  </label>
+	    {{$list[ol].id}}</td>
+		<td>{{$list[ol].title}}</td>
+		<td><a href="{{$list[ol].file}}" target="_blank">{{$list[ol].file}}</a></td>
+		<td>{{$list[ol].addtime}}</td>
+		<td><a href="/update.php?id={{$list[ol].id}}"></a>
+		<a href="/detail.php?id={{$list[ol].id}}" target="_blank"></a>	
+		<a href="{{url key=del value=$list[ol].id}}"><img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a></td>
+	</tr>
+	{{/section}}
+	<tr class="tr3" >
+	  <td align="center" colspan="5">{{$pager.render}}</td>
+	</tr>
+	<tr class="tr4" >
+	  <td align="left" colspan="5"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td><label>
+	        标题：
+	            <input name="title" type="text" id="title" size="70" />
+	        </label>
+	        上传附件：
+	        <label>
+	          <input type="file" name="file" id="file" />
+	        </label>	        <input name="aid" type="hidden" id="aid" value="{{$config.entity_id}}" />	        <input value="提交" type="submit" class="btn" /></td>
+	      <td></td>
+	      </tr>
+	    </table></td>
+	  </tr>
+</table>
+</form>
+</div>
+<iframe height="500" width="1000" id="op" name="op"	style="display: none;"></iframe>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/admin/static/js/admin.js"></script>
+<script language="javascript" src="/admin/static/js/forms.js"></script>
+<meta content="MSHTML 6.00.5730.13" name="GENERATOR" />
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+<div class="t">
+<form action="" method="get" name="mainform" target="op" id="mainform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr class="tr4">
+	  <td colspan="3" align="left">
+	  <span class="sub">
+	  {{if empty($smarty.get.fid)}}
+	  <input type="button" onclick="$goto('?action={{$act_name}}&add')" value="增加一级分类" class="btn">
+	  {{else}}
+	  <input type="button" onclick="history.back()" value="返回上级" class="btn">
+	  <input type="button" onclick="$goto('?action={{$act_name}}&add&fid={{$smarty.get.fid}}')" value="增加小分类" class="btn">
+	  {{/if}}
+	  </span>
+	  &nbsp;</td>
+	  </tr>
+	<tr class="tr2">
+		<td align="center">序号</td>
+		<td align="center">名称</td>
+		<td align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3" t_one="t_one">
+		<td><!--<input name="ids[]" type="checkbox" id="ids[]" value="{{$list[ol].id}}" />-->{{$list[ol].id}}</td>
+		<td>{{if empty($smarty.get.fid)}}<a href="?action={{$act_name}}&amp;fid={{$list[ol].id}}">{{$list[ol].name}}</a>
+		{{else}}{{$list[ol].name}}{{/if}}</td>
+		<!--<td><a
+			href="op_product.php?op=up&id={{$list[ol].id}}&tid={{$list[ol.index_prev].id|default:0}}"
+			target="op">上升</a> <a
+			href="op_product.php?op=down&id={{$list[ol].id}}&tid={{$list[ol.index_next].id|default:0}}"
+			target="op">下降</a></td>-->
+		<td>
+		<a href="?action={{$act_name}}&add&id={{$list[ol].id}}">编辑</a>
+		<a href="?action={{$act_name}}&del={{$list[ol].id}}" onclick="return confirm('您确定删除吗？')">删除</a>&nbsp;&nbsp;&nbsp;		
+		{{if empty($smarty.get.fid)}}<a href="?action={{$act_name}}&amp;add&amp;fid={{$list[ol].id}}">增加子栏目</a>{{/if}}</td>
+	</tr>
+	<tr class="tr3" t_one="t_one">
+	  <td colspan="3">{{$pager.render}}</td>
+	  </tr>
+	{{/section}}
+</table>
+<!--          <table width="100%" border="0" align="center" cellpadding="0"
+                       cellspacing="0">
+
+                    <tr class="tr4">
+                        <td valign="middle">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td>操作:
+                                        <select name="job" id="job" onchange="showTarget(this.value);">
+                                            <option value="" selected="selected">选择操作</option>
+                                            <option value="digest">推荐内容</option>
+                                            <option value="delete">删除内容</option>
+                                            <option value="move">移动内容</option>
+                                            
+                                                                <option value="copy">复制内容</option>
+                                                                <option value="pubview" selected="selected">发布内容</option>
+
+                                                                <option value="destroy">永久删除</option>
+                                                                <option value="pubcancel">取消发布</option>
+                                                                <option value="pubupdate">更新发布</option>
+                                                                <option value="batchtag">批量标签</option>
+                                        </select>
+                                        <span id="target">
+                                            <select name="tocid" id="tocid" style="display:none;" disabled="disabled">
+                                                <option value="0" selected="selected">请选择</option>
+				  {{if $sclist}}
+				  {{section name=xx loop=$sclist}}
+                                                <option value="{{$sclist[xx].id}}">{{$sclist[xx].name}}</option>
+				  {{/section}}
+				  {{else}}
+				  {{section name=xx loop=$clist}}
+                                                <option value="{{$clist[xx].id}}">{{$clist[xx].name}}</option>
+				  {{/section}}
+				  {{/if}}
+                                            </select>
+                                            <select name="digest" id="digest" style="display:none;" disabled="disabled">
+                                                <option value="0" selected="selected">普通主题</option>
+                                                <option value="1">栏目推荐</option>
+                                                <option value="2">站点推荐</option>
+                                                <option value="3">头条推荐</option>
+                                            </select>
+                                        </span>
+                                        <input name="fid" id="fid" value="{{$smarty.get.tid|default:0}}" type="hidden" />
+                                        <input value="全选" onclick="CheckAll(document.mainform);" type="button" class="btn" />
+                                        <input value="提交" onclick="return whole(document.pub_edit);" type="submit" class="btn" /></td>
+                                    <td></td>
+                                </tr>
+                            </table>-->
+<div></div>
+</td>
+</tr>
+</table>
+</form>
+</div>
+<iframe height="500" width="1000" id="op" name="op"
+	style="display: none;"></iframe>
+</div>
+</body>
+</html>

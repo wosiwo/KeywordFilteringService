@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
+<script language="javascript" src="/admin/static/js/forms.js"></script>
+<script language="javascript">
+function $(id)
+{
+	return document.getElementById(id);
+}
+</script>
+<style type="text/css">
+<!--
+body,td,th {
+	font-size: 12px;
+}
+
+body {
+	margin-left: 16px;
+}
+
+.num_t {
+	color: #FF0000;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.STYLE1 {
+	color: #FF0000;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+<body>
+<br />
+<div class="t">
+<table cellspacing="0" cellpadding="0" width="100%" border="0">
+	<tr class="tr4">
+		<td width="17%" style="TEXT-ALIGN: center">&nbsp;</td>
+	    <td width="51%" style="TEXT-ALIGN: center">
+		<form action="admin_news.php?action=news_search" method="post" name="form1" id="form1">
+合计：<span class="num_t">{{$pager.total}}</span>
+		</form></td>
+	</tr>
+	<tr class="tr2">
+	  <td height="32" colspan="2" align="left">分类： {{foreach item=c from=$child}}
+      <a href="admin_news.php?cid={{$c.id}}&amp;fid={{$smarty.get.fid}}" class="s4">{{$c.name}}</a>	  {{/foreach}} </td>
+    </tr>
+</table>
+</div>
+<div class="t">
+<form action="?action=op" method="POST" name="mainform" target="op" id="mainform">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+	<tr class="tr2">
+		<td align="center">ID</td>
+		<td align="center">名称</td>
+		<td align="center">头衔</td>
+		<td align="center">简介</td>
+		<td align="center">推荐位置</td>
+		<td align="center">添加时间</td>
+		<td align="center">操作</td>
+	</tr>
+	{{section name=ol loop=$list}}
+	<tr class="tr3">
+		<td><label>
+		  <input name="ids[]" type="checkbox" id="ids[]" value="{{$list[ol].id}}" />
+		  </label>
+	    {{$list[ol].id}}</td>
+		<td><a href="?action=add&amp;id={{$list[ol].id}}">{{$list[ol].name}}</a></td>
+		<td>{{$list[ol].title}}</td>
+		<td>{{$list[ol].intro|mbcut:40}}</td>
+		<td>{{askey data=$digest key=$list[ol].digest}}</td>
+		<td>{{$list[ol].addtime}}</td>
+		<td>
+	<a href="?action=add&id={{$list[ol].id}}"><img src="/admin/static/images/edit.gif" alt="修改" border="0" /></a>
+     <a href="?del={{$list[ol].id}}"><img src="/admin/static/images/del.gif" alt="删除" border="0" onclick="return confirm('您确定要删除此内容？');" /></a>
+     </td>
+	</tr>
+	{{/section}}
+	<tr class="tr3" >
+	  <td align="center" colspan="7">{{$pager.render}}</td>
+	</tr>
+	<tr class="tr4" >
+	  <td align="left" colspan="7"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+	    <tr>
+	      <td>操作:
+	        <select name="job" id="job" onchange="showTarget(this.value);">
+	          <option value="" selected="selected">选择操作</option>
+	          <option value="push">推荐到</option>			  
+			  <option value="cate">移动到</option>
+	          </select>
+	        <span id="target">
+	          <select name="push" id="push" style="display:none;" disabled="disabled">
+	            {{foreach item=ch key=k from=$digest}}
+                <option value="{{$k}}">{{$ch}}</option>	            
+                {{/foreach}}					
+	           </select>
+			   <select name="cate" id="cate" style="display:none;" disabled="disabled">
+	            {{foreach item=ch key=k from=$cates}}
+                <option disabled="disabled" style="font-size:14px; font-weight:bolder; color:#0033CC;">{{$ch.name}}</option>
+				 {{foreach item=c key=k2 from=$ch.child}}
+				 <option value="{{$k2}}">└─{{$c.name}}</option>
+				 {{/foreach}}
+                {{/foreach}}
+	           </select>
+	        </span>
+	        <input value="全选" onclick="CheckAll('ids[]');" type="button" class="btn" />
+	        <input value="提交" type="submit" class="btn" /></td>
+	      <td></td>
+	      </tr>
+	    </table></td>
+	  </tr>
+</table>
+</form>
+</div>
+<iframe height="500" width="1000" id="op" name="op"	style="display: none;"></iframe>
+</body>
+</html>

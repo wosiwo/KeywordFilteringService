@@ -1,0 +1,114 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>涛谱科技后台管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="/admin/static/css/admin.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="m"></div>
+<style>
+.menu {
+	position: absolute;
+	background: #fff;
+	border: 1px solid #69788c;
+}
+
+.menu td,.menu li {
+	background: #e6f5ff;
+}
+
+.menu li {
+	list-style: none;
+	padding: 0;
+}
+
+.menu a {
+	display: block;
+	padding: 3px 15px 3px 15px
+}
+
+.menu a:hover {
+	background: #e6f5ff;
+	text-decoration: none;
+	color: #fff;
+}
+
+.menu ul.ul1 li a {
+	display: inline;
+	padding: 0
+}
+
+#colorbox {
+	width: 91px;
+	height: 78px;
+	padding: 3px 0 0 3px;
+	overflow: hidden;
+}
+
+#colorbox div {
+	cursor: pointer;
+	width: 8px;
+	height: 8px;
+	float: left;
+	margin: 0 3px 3px 0;
+	border: 1px #000 solid;
+	font: 0/ 8px arial
+}
+</style>
+<div class="menu" id="menu_editor" style="display: none;"></div>
+<div id="showmenu" style="z-index: 100; display: none;"></div>
+<form action="" method="post"
+	enctype="multipart/form-data" >
+<table width="96%" border="1" align="center" cellpadding="0"
+	cellspacing="0" style="border-collapse: collapse">
+	<tr class="head">
+		<td colspan="2"></td>
+	</tr>
+	<tr class="tr2">
+		<td width="10%" style="text-align: center">字段</td>
+		<td width="90%" style="text-align: center">内容</td>
+	</tr>
+	<tr class="line">
+      <td>专家名称</td>
+	  <td><input name="name" class="input" id="name" value="{{$news.name}}" /></td>
+    </tr>
+	
+	<tr class="line">
+		<td>专家头衔</td>
+		<td><input class="input" name="title" value="{{$news.title}}" size="70" />
+	    <input type="hidden" name="id" value="{{$news.id}}" /></td>
+	</tr>
+	<tr class="line">
+	  <td>头像</td>
+	  <td><img src="{{$news.avatar}}" /></td>
+    </tr>
+		<tr class="line">
+		<td>重新上传</td>
+		<td><input name="avatar" type="file" id="avatar" size="50" class="input" /></td>
+		</tr>
+		<tr class="line">
+          <td>专家图片</td>
+		  <td><img src="{{$news.pic}}" width="240" /></td>
+    </tr>
+		<tr class="line">
+          <td>重新上传</td>
+		  <td><input name="pic" type="file" id="pic" size="50" class="input" /></td>
+    </tr>
+	<tr class="line">
+		<td>简单描述</td>
+		<td><textarea name="intro" cols="60" rows="4" id="intro">{{$news.intro}}</textarea></td>
+	</tr>
+	<tr class="line">
+		<td>详细介绍</td>
+		<td>{{$editor}}</td>
+	</tr>
+	<tr class="line">
+		<td colspan="2" align="center"><span class="sub"> <input
+			type="submit" value="修改" class="btn" /></span></td>
+	</tr>
+</table>
+<div class="sub"></div>
+</form>
+</body>
+</html>
