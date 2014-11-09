@@ -60,16 +60,9 @@ class Trie {
      * @param $dict_path 序列化字典路径
      * @return $matchs array 查找到的关键字和权重
      */
-    function search($content, $dict_path='') {
-        if(empty($dict_path)) {
-            $dict_path = $this->default_out_path;
-            $ifUpperCase = 0;
-        }else{
-        	$ifUpperCase = 0;
-        }
-        // echo $this->default_out_path;       
+    function search($content, $ifUpperCase=false) {
+        $dict_path = $this->default_out_path;
 		if ($this->nodes) {
-			// $this->nodes = $words;
 			$matchs = $this->match($ifUpperCase,$content);
 			return $matchs;
 		} else {
@@ -204,11 +197,7 @@ class Trie {
      * @return $ret array 查找到的关键词及权重
      */
     function match($ifUppCase,$s) {
-    	//$ifUppCase == 1 && $s = strtolower($s);
-		 //字典乱码处理
-        // $ifUppCase == 1 && $s = mb_strtolower($s,'GBK');
 		$ifUppCase == 1 && $s = mb_strtolower($s,'UTF-8');
-        // $isUTF8 = strtoupper(substr($GLOBALS['db_charset'],0,3)) === 'UTF' ? true : false;
         $isUTF8 = true;
         $ret = array();
         $cur = 0; //当前节点，初始为根节点
