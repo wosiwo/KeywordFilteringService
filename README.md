@@ -41,7 +41,9 @@ php filter_server.php
 * step 5 now you can use it by both GET and POST 
     
     >GET method:vist http://localhost:8888/filter?word=wosiwo
+
     >POST method:vist http://localhost:8888/index.html and you can see a simple form page ,you can type you content into text field that named word,and then submit 
+    
     >if the page show a [["wosiwo","0.8"]] , it shows that the service is running successfully.
 
 
