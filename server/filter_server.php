@@ -35,7 +35,6 @@ class HttpServer extends Swoole\Protocol\HttpServer
 
             //get param word
             $word = self::getParam($request,'word');
-
             if ($word) {
                 $result = $this->search($word);
                 // $result = self::changeCharset($result,'gbk','utf-8');
@@ -125,4 +124,19 @@ Swoole\Error::$echo_html = false;
 $server = Swoole\Network\Server::autoCreate('0.0.0.0', 8888);
 $server->setProtocol($AppSvr);
 //$server->daemonize(); //作为守护进程
-$server->run(array('worker_num' => 0, 'max_request' => 5000, 'log_file' => '/tmp/swoole.log'));
+$server->run(array(
+    'worker_num' => 0, 
+    'max_request' => 5000, 
+    'log_file' => '/tmp/swoole.log',
+    // 'package_max_length'=>134737595600,
+    // 'open_length_check' => true,
+    // 'open_http_protocol' => true,
+    // 'open_eof_check' => true, //打开EOF检测
+    // 'package_eof' => "\r\n", //设置EOF
+    ));
+
+
+
+
+
+
