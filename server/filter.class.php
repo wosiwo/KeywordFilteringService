@@ -186,9 +186,11 @@ class Trie {
 
 	function split($str) {
 		if (($pos = strrpos($str, '|')) === false) {
-			return array($str, 0);
+			return array($str, 0,'');
 		}
-		return explode('|',$str);
+        $array = explode('|',$str);
+        $array[2] = isset($array[2])?$array[2]:'';
+		return $array;
 	}
 
     /**
