@@ -49,3 +49,13 @@ php filter_server.php
     >if the page show a [["wosiwo","0.8"]] , it shows that the service is running successfully.
 
 
+##Tip:
+> To increase the transmission limit ,You may need to change your kernel parameters of your computer.
+>In FreeBSD/MacOS:
+
+```bash
+sysctl -w net.local.dgram.maxdgram=8192
+sysctl -w net.local.dgram.recvspace=200000 修改Unix Socket的buffer区尺寸
+```
+
+>other to see [http://wiki.swoole.com/wiki/page/11.html](http://wiki.swoole.com/wiki/page/11.html)
