@@ -33,18 +33,17 @@ git clone git@github.com:wosiwo/KeywordFilteringService.git
 
     >this step will read original dict from /server/dict_all.txt ,then convert Plaintext into ASCII code and use it to  build array with a struct which is conducive to search 
 ```bash
-cd KeywordFilteringService/server
+cd KeywordFilteringService/dict
 php createBinaryDict.php
 ```
 * step 4 start the httpserver
 ```bash
-php filter_server.php
+php server.php start
 ```
-* step 5 now you can use it by both GET and POST 
+* step 5 now you can call it by service client
     
-    >GET method:vist http://localhost:8888/filter?word=wosiwo
+    >php tests/keyword_service.php
 
-    >POST method:vist http://localhost:8888/index.html and you can see a simple form page ,you can type you content into text field that named word,and then submit 
 
     >if the page show a [["wosiwo","0.8"]] , it shows that the service is running successfully.
 
