@@ -1,9 +1,9 @@
 KeywordFilteringService
 =====
 
-* A PHP HTTPServer that you can use to filter keywords. It depons on a php extension named Swoole.
+* A PHP Service that you can use to filter keywords. It depons on a php extension named Swoole.
 
-* 以HTTP方式提供关键词过滤服务，这个服务依赖php swoole扩展。
+* 以RPC方式提供关键词过滤服务，这个服务依赖php swoole扩展。
 * swoole扩展让PHP有了直接提供HTTP服务的能力，使得庞大的字典可以常驻内存，避免原生php每次访问都需要重新载入字典所耗费的时间（随着字典条目的增加这个时间会越来越长）。
     
     >时间主要耗费在将字符串反序列化成数组上,这是由于php数组在内核的实现机制
